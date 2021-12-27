@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:marketplace/models/category.dart';
 
 class Categories extends StatefulWidget {
-
   Categories({Key? key}) : super(key: key);
 
   @override
@@ -13,59 +12,66 @@ class Categories extends StatefulWidget {
 }
 
 class _Categories extends State<Categories> {
-
-  String dropdownValue = 'CATEGORIES';
-
   Category mainCategory = Category(id: 0, name: 'CATEGORIES');
   var categories = List<Category>.empty(growable: true);
 
-  final String url = 'https://marketplace-be-epm-marketplace.apps.cluster6.eu.aws.cloudapp.epam.com/';
+  final String url =
+      'https://marketplace-be-epm-marketplace.apps.cluster6.eu.aws.cloudapp.epam.com/';
   var client = http.Client();
 
   @override
   void initState() {
     super.initState();
-     getCategories();
+    getCategories();
   }
 
   Future<void> getCategories() async {
-    categories.add(mainCategory);
+    // categories.add(mainCategory);
     try {
-      http.Response response = await client.get(Uri.parse('$url/api/categories'));
+      http.Response response =
+          await client.get(Uri.parse('$url/api/categories'));
       if (response.statusCode == 200) {
         final parsed = jsonDecode(response.body).cast<Map<String, dynamic>>();
-        categories.addAll(parsed.map<Category>((json) => Category.fromJson(json)).toList());
-        print(categories.map((e) => e.name));
+        categories.addAll(
+            parsed.map<Category>((json) => Category.fromJson(json)).toList());
       }
-    } finally{
+    } finally {
       client.close();
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    String dropdownValue = mainCategory.name;
+    bool _isSelected = false;
+
     return DropdownButton<String>(
-      isDense: true,
-      hint: Text(dropdownValue),
-      value: dropdownValue,
+      autofocus: true,
+      underline: Text(mainCategory.name),
+      icon: const Icon(Icons.keyboard_arrow_up_sharp),
       onChanged: (String? newValue) {
         setState(() {
           dropdownValue = newValue!;
         });
-        print(dropdownValue);
       },
       items: categories.map((Category category) {
         return DropdownMenuItem<String>(
           value: category.name,
-          child: Text(
-            category.name,
+          child: LabeledCheckbox(
+            label: category.name,
+            padding: const EdgeInsets.all(10),
+            value: _isSelected,
+            onChanged: (bool newValue) {
+              setState(() {
+                _isSelected = newValue;
+              });
+            },
           ),
         );
       }).toList(),
     );
   }
 }
-
 
 class LabeledCheckbox extends StatelessWidget {
   const LabeledCheckbox({
@@ -90,8 +96,11 @@ class LabeledCheckbox extends StatelessWidget {
       child: Padding(
         padding: padding,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Expanded(child: Text(label)),
+            SizedBox(
+              child: Text(label),
+            ),
             Checkbox(
               value: value,
               onChanged: (bool? newValue) {

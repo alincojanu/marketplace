@@ -34,9 +34,15 @@ class _SearchAds extends State<SearchAds> {
                 ),
                 Row(
                   children: [
-                    Expanded(child: Categories()),
+                    Expanded(
+                      flex: 1,
+                      child: Categories(),
+                    ),
                     // SizedBox(width: 25),
-                    Expanded(child: Text('Items')),
+                    Expanded(
+                      flex: 3,
+                      child: Text('Items'),
+                    ),
                   ],
                 )
               ],
