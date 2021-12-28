@@ -3,10 +3,10 @@ import 'package:flutter/widgets.dart';
 
 import '../constants.dart';
 
-class SearchItems extends StatelessWidget {
+class SearchByKeyword extends StatelessWidget {
   bool hintActive = true;
 
-  SearchItems({Key? key}) : super(key: key);
+  SearchByKeyword({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

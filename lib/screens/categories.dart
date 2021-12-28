@@ -26,15 +26,17 @@ class _Categories extends State<Categories> {
   }
 
   Future<void> getCategories() async {
-    // categories.add(mainCategory);
     try {
       http.Response response =
-          await client.get(Uri.parse('$url/api/categories'));
+      await client.get(Uri.parse('$url/api/categories'));
       if (response.statusCode == 200) {
         final parsed = jsonDecode(response.body).cast<Map<String, dynamic>>();
         categories.addAll(
             parsed.map<Category>((json) => Category.fromJson(json)).toList());
       }
+    } catch (e) {
+      categories.add(mainCategory);
+      print(e);
     } finally {
       client.close();
     }
@@ -62,6 +64,7 @@ class _Categories extends State<Categories> {
             padding: const EdgeInsets.all(10),
             value: _isSelected,
             onChanged: (bool newValue) {
+              print('dropdown $newValue');
               setState(() {
                 _isSelected = newValue;
               });
@@ -91,7 +94,7 @@ class LabeledCheckbox extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        onChanged(!value);
+        onChanged(value);
       },
       child: Padding(
         padding: padding,
@@ -103,7 +106,11 @@ class LabeledCheckbox extends StatelessWidget {
             ),
             Checkbox(
               value: value,
+              checkColor: Colors.white,
+              fillColor:
+                  MaterialStateColor.resolveWith((states) => Colors.lightBlueAccent),
               onChanged: (bool? newValue) {
+                // print(newValue);
                 onChanged(newValue!);
               },
             ),
