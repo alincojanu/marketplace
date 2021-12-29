@@ -11,7 +11,6 @@ class AdvertisementItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(items);
     return GridView.count(
       crossAxisCount: 4,
       children:
