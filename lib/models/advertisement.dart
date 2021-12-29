@@ -12,8 +12,8 @@ class Advertisement {
       required this.description,
       required this.price,
       required this.image,
-      required this.location, 
-      required this.owner, 
+      required this.location,
+      required this.owner,
       this.id});
 
   factory Advertisement.fromJson(Map<String, dynamic> json) {

@@ -15,7 +15,6 @@ class SearchByKeyword extends StatelessWidget {
         child: TextField(
           onChanged: (value) {
             hintActive = false;
-            // print(value);
           },
           decoration: InputDecoration(
             icon: Icon(
@@ -30,7 +29,7 @@ class SearchByKeyword extends StatelessWidget {
                 color: kEpamBlue,
               ),
             ),
-            border: OutlineInputBorder(),
+            border: const OutlineInputBorder(),
           ),
         ));
   }

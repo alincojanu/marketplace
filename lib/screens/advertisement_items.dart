@@ -8,13 +8,11 @@ class AdvertisementItems extends StatelessWidget {
 
   AdvertisementItems({Key? key, required this.items}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return GridView.count(
       crossAxisCount: 4,
-      children:
-          items.map((e) => AdvertisementCard(advertisement: e)).toList(),
+      children: items.map((e) => AdvertisementCard(advertisement: e)).toList(),
     );
   }
 }

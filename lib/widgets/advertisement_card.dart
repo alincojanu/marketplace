@@ -13,7 +13,7 @@ class AdvertisementCard extends StatelessWidget {
     return Card(
       child: Column(
         children: [
-          Expanded(
+          const Expanded(
             child: Image(
               height: 100.0,
               fit: BoxFit.cover,
@@ -21,7 +21,7 @@ class AdvertisementCard extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             child: Text(
               advertisement.title.toString().toUpperCase(),
               style: TextStyle(
@@ -30,20 +30,16 @@ class AdvertisementCard extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             child: Text(advertisement.description),
           ),
           Padding(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  child: Text(advertisement.price.toString()),
-                ),
-                Container(
-                  child: Text(advertisement.location),
-                ),
+                Text(advertisement.price.toString()),
+                Text(advertisement.location),
               ],
             ),
           )
