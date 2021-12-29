@@ -17,7 +17,7 @@ class AdvertisementCard extends StatelessWidget {
             child: Image(
               height: 100.0,
               fit: BoxFit.cover,
-              image: NetworkImage(advertisement.imageUrl),
+              image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
             ),
           ),
           Container(
@@ -39,7 +39,7 @@ class AdvertisementCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  child: Text(advertisement.price),
+                  child: Text(advertisement.price.toString()),
                 ),
                 Container(
                   child: Text(advertisement.location),
