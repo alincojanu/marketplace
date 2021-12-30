@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:marketplace/models/advertisement.dart';
 import 'package:marketplace/widgets/advertisement_card.dart';
@@ -20,21 +19,27 @@ class AdvertisementItems extends StatelessWidget {
         image: '',
         owner: '');
 
-    return smallScreen
-        ? SizedBox(
-            width: 400,
-            height: 400,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: buildAdvertisementCards(defaultAd),
-            ),
-          )
-        : GridView.count(
-            crossAxisSpacing: 20,
-            crossAxisCount: 4,
-            children: buildAdvertisementCards(defaultAd),
-          );
+    return smallScreen ? cardList(defaultAd) : gridViw(defaultAd);
+  }
+
+  Widget gridViw(Advertisement defaultAd) {
+    return GridView.count(
+      crossAxisSpacing: 10,
+      mainAxisSpacing: 10,
+      crossAxisCount: 4,
+      children: buildAdvertisementCards(defaultAd),
+    );
+  }
+
+  Widget cardList(Advertisement defaultAd) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: Center(
+        child: Column(
+          children: buildAdvertisementCards(defaultAd),
+        ),
+      ),
+    );
   }
 
   List<AdvertisementCard> buildAdvertisementCards(Advertisement defaultAd) {
