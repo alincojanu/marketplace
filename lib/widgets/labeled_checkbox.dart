@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class LabeledCheckbox extends StatelessWidget {
@@ -31,8 +30,8 @@ class LabeledCheckbox extends StatelessWidget {
             Checkbox(
               value: value,
               checkColor: Colors.white,
-              fillColor: MaterialStateColor.resolveWith(
-                      (states) => Colors.grey),
+              fillColor:
+                  MaterialStateColor.resolveWith((states) => Colors.grey),
               onChanged: (bool? newValue) {
                 print(newValue);
                 onChanged(newValue!);

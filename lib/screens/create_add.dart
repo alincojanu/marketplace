@@ -14,7 +14,7 @@ class _CreateAdd extends State<CreateAdd> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: NavBar(),
-      body: Text('add item form'),
+      body: Center(child: Text('add item form')),
     );
   }
 }

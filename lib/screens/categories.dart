@@ -29,7 +29,7 @@ class Categories extends StatelessWidget {
             content: Column(
               children: categories
                   .map((category) => LabeledCheckbox(
-                        label: category.name,
+                        label: category.name.toUpperCase(),
                         value: _isSelected,
                         onChanged: (bool newValue) {
                           _isSelected = newValue;

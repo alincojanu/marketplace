@@ -1,5 +1,5 @@
 class Advertisement {
-  String? id;
+  int? id;
   String title;
   String description;
   double price;
@@ -18,6 +18,7 @@ class Advertisement {
 
   factory Advertisement.fromJson(Map<String, dynamic> json) {
     return Advertisement(
+      id: json['id'],
       title: json['title'],
       description: json['description'],
       price: json['price'],

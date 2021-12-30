@@ -11,6 +11,7 @@ class SearchByKeyword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.only(right: 160),
         alignment: Alignment.topLeft,
         child: TextField(
           onChanged: (value) {

@@ -10,9 +10,20 @@ class AdvertisementItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Advertisement defaultAd = Advertisement(title: '',
+        location: '',
+        price: 0,
+        description: '',
+        image: '',
+        owner: '');
+
     return GridView.count(
+      crossAxisSpacing: 20,
       crossAxisCount: 4,
-      children: items.map((e) => AdvertisementCard(advertisement: e)).toList(),
+      children: items.isEmpty
+          ? List<AdvertisementCard>.filled(
+          1, AdvertisementCard(advertisement: defaultAd))
+          : items.map((e) => AdvertisementCard(advertisement: e)).toList(),
     );
   }
 }

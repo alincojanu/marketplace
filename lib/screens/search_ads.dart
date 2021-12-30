@@ -77,28 +77,31 @@ class _SearchAds extends State<SearchAds> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(30),
               child: SearchByKeyword(),
             ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: 400,
-                  child: Categories(
-                    categories: categories,
-                    key: ValueKey(categories),
+            Padding(
+              padding: const EdgeInsets.all(30),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 400,
+                    child: Categories(
+                      categories: categories,
+                      key: ValueKey(categories),
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: 800,
-                  height: 500,
-                  child: AdvertisementItems(
-                    items: items,
-                    key: ValueKey(items),
+                  SizedBox(
+                    width: 800,
+                    height: 500,
+                    child: AdvertisementItems(
+                      items: items,
+                      key: ValueKey(items),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             )
           ],
         ),
