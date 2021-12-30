@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketplace/screens/advertisement_page.dart';
 import 'screens/search_ads.dart';
 import 'screens/create_add.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => SearchAds(),
         CreateAdd.id: (context) => CreateAdd(),
+        AdvertisementPage.id: (context) => AdvertisementPage(),
       },
     );
   }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -66,45 +67,62 @@ class _SearchAds extends State<SearchAds> {
     }
   }
 
+  bool get isHandset {
+    return (!kIsWeb) || MediaQuery.of(context).size.width < 900;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: NavBar(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(30),
-              child: SearchByKeyword(),
+      body: isHandset ? smallScreen() : largeScreen(),
+    );
+  }
+
+  Widget smallScreen() {
+    return AdvertisementItems(
+      smallScreen: true,
+      items: items,
+      key: ValueKey(items),
+    );
+  }
+
+  Center largeScreen() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(30),
+            child: SearchByKeyword(),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(30),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 400,
+                  child: Categories(
+                    categories: categories,
+                    key: ValueKey(categories),
+                  ),
+                ),
+                SizedBox(
+                  width: 800,
+                  height: 500,
+                  child: AdvertisementItems(
+                    smallScreen: false,
+                    items: items,
+                    key: ValueKey(items),
+                  ),
+                ),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(30),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 400,
-                    child: Categories(
-                      categories: categories,
-                      key: ValueKey(categories),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 800,
-                    height: 500,
-                    child: AdvertisementItems(
-                      items: items,
-                      key: ValueKey(items),
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
